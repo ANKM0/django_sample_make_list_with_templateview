@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,34 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j05_(nt-x9i^w%l$kcz+-uo909t9&(fx_!1=bz%6p_zaa2&9^b'
+
+
+if os.path.exists(os.path.join(BASE_DIR, 'secrets.json')):
+    with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+        secrets = json.load(secrets_file)
+else:
+    print('secrets.json could not be found.')
+    quit()
+
+
+def get_secret(setting, secrets=secrets, is_optional=False):  # 設定が見つからない場合にNoneを返したい場合にはis_optionalにTrueを設定
+    try:
+        secret = secrets[setting]
+        if secret:
+            return secret
+        else:
+            if is_optional:
+                return None
+            else:
+                print(f'Please set {setting} in secrets.json')
+                quit()
+    except KeyError:
+        print(f' Please set {setting} in secrets.json')
+        quit()
+
+
+SECRET_KEY = get_secret('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
