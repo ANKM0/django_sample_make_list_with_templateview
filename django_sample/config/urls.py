@@ -14,8 +14,34 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('app1.urls')),
 ]
+
+
+# from django.contrib import admin
+# from django.urls import path, include, re_path
+# from django.conf.urls.static import static
+# from django.conf import settings
+# from django.views.generic import TemplateView
+# from django.views.static import serve  # 追加
+
+# urlpatterns = [
+#     path("neo_cellco_secret_admin/", admin.site.urls),
+#     path('', include('app1.urls')),
+#     path('account/', include('allauth.urls')),  # django-allauth
+#     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+#     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+
+#     path('accounts/', include('allauth.urls')),
+#     path('accounts/login/', TemplateView.as_view(template_name='login.html'), name='login'),
+#     path('accounts/logout/', TemplateView.as_view(template_name='logout.html'), name='logout'),
+#     path('accounts/signup/', TemplateView.as_view(template_name='signup.html'), name='signup'),
+# ]
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
