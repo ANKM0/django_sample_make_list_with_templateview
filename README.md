@@ -1,21 +1,23 @@
-# Read Me
-1. インストールする
+# 導入方法 how to install
+## 1. インストールする
 ```python
-git clone https://github.com/ANKM0/django_sample_make_form_or_list_with_templateview.git
+https://github.com/ANKM0/django_sample_template.git
 # (必要なら pipenv shell)
 
-#(pipenvの場合、pip->pipenv)
+#(pipenvの場合、pip->pipenvに変更)
 pip install django
 ```
 
-2. 設定
+## 2. 設定
+コマンドを実行してsecrets.jsonを作成する
 ```python
-python "D:\programs\test\django_sample_make_form_or_list_with_templateview\django_sample\gen_secrets.py"
+python "django_sample\gen_secrets.py"
 ```
-出来たsecrets.jsonはdjango_sample直下に移動させる
+出来たsecrets.jsonをdjango_sample直下に移動させる
 ```python
-#(pipenvの場合、pip->pipenv)
+#(pipenvの場合、pip->pipenvに変更)
+cd django_sample
+python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
-python manage.py createsuperuser
 ```
