@@ -5,5 +5,14 @@
 <div class="container">
     <h1>index page</h1>
 
+    {{ object_list }}
+
+    {% for item in object_list %}
+    <li>{{ item.number }}</li>
+    <li>{{ item.name }}</li>
+    <li>{{ item.price }}</li>
+    <br>
+    {% endfor %}
+
 </div>
 {% endblock %}
