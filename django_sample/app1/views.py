@@ -6,20 +6,8 @@ from .models import TestData
 
 class IndexView(TemplateView):
     template_name: str = "app1/index.html"
-    model = TestData
-    object_list = model.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        object_list = self.object_list
-        context = {
-            "object_list": object_list,
-        }
-        return render(request, self.template_name, context)
-
-    # def post(self, request, *args, **kwargs):
-    #     object_list = self.user_info_object_list
-    #     context = {
-    #         "object_list": object_list,
-    #     }
-    #     return render(request, self.template_name, context)
-    #     return redirect("app1:index")
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['object_list'] = TestData.objects.all()
+        return ctx
