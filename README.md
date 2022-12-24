@@ -1,3 +1,19 @@
+# django_sample_make_list_with_templateview
+Djangoのサンプルです <br>
+TemplateViewを使ってリストを作る方法 のソースコードです <br>
+
+<br>
+
+各ブランチは以下のようになっています
+- mainブランチ <br>
+get_context_dataをオーバーライドする方法
+
+- feature/#8ブランチ <br>
+getをオーバーライドする方法
+
+- feature/#4ブランチ <br>
+Listviewを使う方法
+
 # 導入方法 how to install
 # 1. インストールする
 ```python
@@ -25,7 +41,12 @@ python manage.py runserver
 
 # よくあるエラー
 
-## - No such file or directory
+
+##  No such file or directory
+
+<details>
+<summary>No such file or directory</summary>
+
 以下のコマンドを実行する時に発生する
 ```python
 python "./django_sample/gen_secrets.py"
@@ -50,8 +71,14 @@ python "C:\programs\django_sample\gen_secrets.py"
 <br>
 <br>
 
+</details>
 
-## -secrets.json could not be found
+
+## secrets.json could not be found
+
+<details>
+<summary>secrets.json could not be found</summary>
+
 ### <原因>
 python manage.py runserver　を実行した時などに発生する <br>
 secrets.jsonが上手く読み込まれていないことが原因
@@ -68,3 +95,5 @@ python "django_sample\gen_secrets.py"
 - secrets.jsonが存在する場合 <br>
 secrets.jsonをdjango_sample直下に移動させる <br>
 それでもエラーになる場合は一度消してから作り直す
+
+</details>
